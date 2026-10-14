@@ -1,0 +1,9 @@
+{
+  "name": "zhivoy-akvarium-supabase",
+  "version": "3.0.0",
+  "private": true,
+  "description": "Живой аквариум: Supabase Auth, PostgreSQL, private Storage, Edge Function для ТВ и статический хостинг",
+  "scripts": {
+    "check": "node --check public/app.js && node --check public/tv.js && node --check public/config.js"
+  }
+}

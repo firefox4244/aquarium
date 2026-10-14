@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#073b4c">
+  <meta name="description" content="Создай свой живой аквариум из собственных рисунков рыбок.">
+  <title>Живой аквариум</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">
+      🐠 <span>Живой аквариум</span>
+    </a>
+    <div class="top-actions">
+      <a class="text-link" href="/tv" target="_blank" rel="noopener">Экран ТВ ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Экран авторизации / загрузки -->
+    <section id="auth" class="auth-grid">
+      <div class="hero">
+        <div class="eyebrow">ТВОЙ ПОДВОДНЫЙ МИР</div>
+        <h1>Рисуй рыбок.<br><span>Оживляй океан.</span></h1>
+        <p>
+          Сфотографируй рисунок на листе A4 — и он станет частью твоего аквариума.
+          Рыбки и декорации сохраняются в облаке и доступны на телевизоре.
+        </p>
+        <div class="hero-fish">🐠　🐟　🫧　🐡</div>
+      </div>
+
+      <div class="panel auth-panel">
+        <h2>Готовим твой аквариум…</h2>
+        <p id="authMsg" class="msg" aria-live="polite">
+          Подключаемся к облаку. Регистрация и электронная почта не нужны.
+        </p>
+        <p class="tiny muted">
+          Аквариум автоматически привязывается к этому браузеру.
+          Не очищай данные сайта, если хочешь сохранить доступ.
+          Для телевизора используй QR-код или шестизначный код.
+        </p>
+      </div>
+    </section>
+
+    <!-- Основное приложение -->
+    <section id="app" class="hidden">
+      <div class="welcome-row">
+        <div>
+          <div class="eyebrow">ЛИЧНОЕ ПРОСТРАНСТВО</div>
+          <h1>Мой аквариум</h1>
+          <p id="welcomeEmail" class="muted">Твой аквариум сохранён в этом браузере.</p>
+        </div>
+        <a class="button secondary" href="/tv" target="_blank" rel="noopener">Открыть ТВ-экран ↗</a>
+      </div>
+
+      <div class="dashboard">
+        <aside class="side-nav">
+          <button class="nav-item active" data-tab="aquarium">🌊 <span>Аквариум</span></button>
+          <button class="nav-item" data-tab="fish">🐟 <span>Мои рыбки</span></button>
+          <button class="nav-item" data-tab="connect">📺 <span>Подключение ТВ</span></button>
+        </aside>
+
+        <div class="tab-content">
+          <!-- Вкладка: Аквариум -->
+          <section id="tab-aquarium" class="panel tab-panel">
+            <div class="section-head">
+              <div>
+                <h2>Оформление</h2>
+                <p class="muted">Настрой свой подводный мир.</p>
+              </div>
+              <span class="status-dot">Сохранение в облаке</span>
+            </div>
+
+            <label>
+              Фон аквариума
+              <select id="background">
+                <option value="neutral">Лагуна — универсальный</option>
+                <option value="ocean">Глубокий океан</option>
+                <option value="freshwater">Пресноводный мир</option>
+                <option value="night">Ночное море</option>
+                <option value="reef">Коралловый риф</option>
+              </select>
+            </label>
+
+            <div class="setting-row">
+              <div>
+                <b>Скорость плавания</b>
+                <p class="muted tiny">Общая скорость рыбок</p>
+              </div>
+              <input id="speed" type="range" min="0.4" max="2.2" step="0.1" value="1">
+            </div>
+
+            <label class="check-label">
+              <input id="bubbles" type="checkbox" checked> Показывать пузырьки
+            </label>
+
+            <button id="saveSettings" class="primary">Сохранить настройки</button>
+
+            <hr>
+
+            <h3>Декорации</h3>
+            <p class="muted">
+              Добавь детали подводного пейзажа. Они появятся на экране телевизора.
+            </p>
+
+            <div class="dec-grid">
+              <button data-decoration="chest">🪙 Сундук</button>
+              <button data-decoration="coral">🪸 Кораллы</button>
+              <button data-decoration="seaweed">🌿 Растение</button>
+              <button data-decoration="statue">🗿 Статуя</button>
+              <button data-decoration="ruins">🏛️ Руины</button>
+              <button data-decoration="shell">🐚 Ракушка</button>
+            </div>
+
+            <div id="decorList" class="decor-list"></div>
+          </section>
+
+          <!-- Вкладка: Мои рыбки -->
+          <section id="tab-fish" class="panel tab-panel hidden">
+            <div class="section-head">
+              <div>
+                <h2>Мои рыбки</h2>
+                <p class="muted">Твои рисунки остаются узнаваемыми — мы не превращаем их в 3D.</p>
+              </div>
+            </div>
+
+            <div class="upload-box">
+              <div class="upload-icon">📷</div>
+              <div>
+                <b>Добавить новую рыбку</b>
+                <p class="muted tiny">
+                  Сними рисунок на белом листе при ровном освещении, сверху и без теней.
+                </p>
+              </div>
+              <label class="file-button">
+                Выбрать или сфотографировать
+                <input id="fishFile" type="file" accept="image/*" capture="environment">
+              </label>
+            </div>
+
+            <label>
+              Имя рыбки
+              <input id="fishName" maxlength="80" placeholder="Например, Полосатик">
+            </label>
+
+            <div id="previewWrap" class="preview-wrap hidden">
+              <img id="preview" alt="Предпросмотр рыбки">
+              <span>Предпросмотр после удаления фона</span>
+            </div>
+
+            <button id="uploadFish" class="primary" disabled>Добавить в аквариум</button>
+            <p id="fishMsg" class="msg" aria-live="polite"></p>
+
+            <div class="section-head list-head">
+              <h3>Коллекция</h3>
+              <button id="clearFish" class="danger-outline">Удалить всех</button>
+            </div>
+
+            <div id="fishList" class="fish-list"></div>
+          </section>
+
+          <!-- Вкладка: Подключение ТВ -->
+          <section id="tab-connect" class="panel tab-panel hidden">
+            <h2>Подключить телевизор</h2>
+            <p class="muted">
+              Открой на телевизоре страницу «Экран ТВ».
+              Отсканируй QR-код телефоном или введи шестизначный код —
+              телевизор получит доступ только к твоему аквариуму.
+            </p>
+
+            <div class="pair-card">
+              <label>
+                Код с экрана телевизора
+                <input id="pairCode" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="000000">
+              </label>
+
+              <div class="pair-actions">
+                <button id="pairTv" class="primary">Подключить по коду</button>
+                <button id="scanQr" class="secondary">Сканировать QR</button>
+              </div>
+
+              <video id="qrVideo" class="qr-video hidden" playsinline muted></video>
+              <p id="pairMsg" class="msg"></p>
+            </div>
+
+            <div class="info-note">
+              После подключения телевизор работает независимо от телефона.
+              Код действует 10 минут и может быть использован один раз.
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <div id="toast" class="toast" role="status"></div>
+  </main>
+
+  <footer>Живой аквариум · Твои рисунки, твой океан</footer>
+
+  <script src="/config.js"></script>
+  <script src="/app.js" defer></script>
+</body>
+</html>

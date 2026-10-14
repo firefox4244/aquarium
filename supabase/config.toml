@@ -1,0 +1,4 @@
+project_id = "aquarium"
+
+[functions.aquarium-tv]
+verify_jwt = false

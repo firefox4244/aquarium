@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#021c32">
+
+  <title>Живой аквариум — ТВ</title>
+
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="tv-body">
+
+  <!-- Фоновый холст с аквариумом (полноэкранный) -->
+  <canvas id="tank" aria-label="Полноэкранный живой аквариум"></canvas>
+
+  <!-- Панель подключения ТВ -->
+  <div id="tvPanel" class="tv-panel">
+
+    <div class="tv-logo">🐠 Живой аквариум</div>
+
+    <h1>Подключи свой аквариум</h1>
+
+    <p>
+      1. Открой сайт на телефоне и войди в аккаунт.<br>
+      2. На телефоне выбери «Подключение ТВ».<br>
+      3. Введи код ниже на телефоне.
+    </p>
+
+    <!-- Код подключения -->
+    <div id="tvCode" class="tv-code">------</div>
+
+    <!-- QR-код для быстрого подключения -->
+    <canvas
+      id="pairQr"
+      class="pair-qr"
+      width="145"
+      height="145"
+      aria-label="QR-код подключения"
+    ></canvas>
+
+    <button id="newCode" class="primary">Обновить код</button>
+
+    <p id="tvStatus" class="tv-status">Создаём код подключения…</p>
+
+    <button id="fullscreen" class="secondary">Во весь экран</button>
+  </div>
+
+  <!-- Подсказка после успешного подключения -->
+  <div id="tvHint" class="tv-hint hidden">
+    Аквариум подключён · Нажми F для полного экрана
+  </div>
+
+  <!-- Скрипты -->
+  <script src="/config.js"></script>
+  <script src="/tv.js" defer></script>
+
+</body>
+</html>
