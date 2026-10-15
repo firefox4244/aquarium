@@ -380,7 +380,7 @@ function makeFish(item) {
       targetX: rand(w * 0.1, w * 0.9),
       targetY: rand(h * 0.15, h * 0.8),
       targetTime: 0,
-      scale: ({ small: 1.5, medium: 2, large: 2.5 }[item.size] || 1) * rand(0.9, 1.1),
+      scale: ({ small: 3, medium: 4, large: 5 }[item.size] || 1) * rand(0.9, 1.1),
       width: 100,
       height: 65,
       image: null,
