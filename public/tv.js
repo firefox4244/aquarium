@@ -523,8 +523,9 @@ function drawBackground(dt, time) {
 
   // Песчаное дно
   const sand = ctx.createLinearGradient(0, h * 0.88, 0, h);
-  sand.addColorStop(0, '#b5d3ba18');
-  sand.addColorStop(1, '#d6d5a933');
+  sand.addColorStop(0, '#c4b99808');
+  sand.addColorStop(0.5, '#b8a87a18');
+  sand.addColorStop(1, '#a8987033');
   ctx.fillStyle = sand;
   ctx.fillRect(0, h * 0.88, w, h * 0.12);
 }
