@@ -8,6 +8,8 @@ const panel    = document.getElementById('tvPanel');
 const tvCode   = document.getElementById('tvCode');
 const tvStatus = document.getElementById('tvStatus');
 const tvHint   = document.getElementById('tvHint');
+const tvCornerCode = document.getElementById('tvCornerCode');
+const tvCornerCodeValue = document.getElementById('tvCornerCodeValue');
 
 const EMOJI = {
   chest:   '🪙',
@@ -317,6 +319,8 @@ async function createCode() {
 
     tvCode.textContent = d.code;
     renderQr(d.code);
+	tvCornerCodeValue.textContent = d.code;
+	tvCornerCode.classList.remove('hidden');
 
     codeExpiry = d.expiresAt * 1000;
     panel.classList.remove('hidden');
@@ -455,6 +459,7 @@ async function poll() {
 
     panel.classList.add('hidden');
     tvHint.classList.remove('hidden');
+	tvCornerCode.classList.add('hidden');
   } catch (e) {
     setCodeStatus('Не удалось синхронизировать аквариум. Проверяем соединение…', true);
   }
