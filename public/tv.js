@@ -459,7 +459,6 @@ async function poll() {
 
     panel.classList.add('hidden');
     tvHint.classList.remove('hidden');
-	tvCornerCode.classList.add('hidden');
   } catch (e) {
     setCodeStatus('Не удалось синхронизировать аквариум. Проверяем соединение…', true);
   }
