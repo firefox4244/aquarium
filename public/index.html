@@ -144,6 +144,15 @@
               Имя рыбки
               <input id="fishName" maxlength="80" placeholder="Например, Полосатик">
             </label>
+			
+			<div class="size-picker">
+				<span class="size-label">Размер рыбки:</span>
+				<div class="size-buttons">
+					<button type="button" class="size-btn" data-size="small">🐟 Маленькая</button>
+					<button type="button" class="size-btn active" data-size="medium">🐠 Средняя</button>
+					<button type="button" class="size-btn" data-size="large">🐡 Большая</button>
+				</div>
+			</div>
 
             <div id="previewWrap" class="preview-wrap hidden">
               <img id="preview" alt="Предпросмотр рыбки">

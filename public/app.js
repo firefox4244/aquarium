@@ -10,6 +10,7 @@ const state = {
   aquarium: null,
   fish: [],
   decorations: [],
+  fishSize: 'medium',
 };
 
 const decorationEmoji = {
@@ -228,10 +229,13 @@ async function api(path, options = {}) {
     const name = String(body.get('name') || 'Моя рыбка').trim().slice(0, 80) || 'Моя рыбка';
     const width = Math.max(1, Math.min(5000, Number(body.get('width')) || 1));
     const height = Math.max(1, Math.min(5000, Number(body.get('height')) || 1));
+	const size = ['small', 'medium', 'large'].includes(body.get('size'))
+		? body.get('size')
+		: 'medium';
 
     const inserted = await sb
       .from('fish')
-      .insert({ id, user_id: user.id, name, object_key: objectKey, width, height })
+      .insert({ id, user_id: user.id, name, object_key: objectKey, width, height, size })
       .select('*')
       .single();
 
@@ -710,6 +714,18 @@ async function removePaperBackground(file) {
 }
 
 // ============================================================
+// Выбор размера рыбки
+// ============================================================
+
+document.querySelectorAll('.size-btn').forEach((btn) =>
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.size-btn').forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.fishSize = btn.dataset.size;
+  })
+);
+
+// ============================================================
 //  Загрузка рыбки
 // ============================================================
 
@@ -763,6 +779,7 @@ $('uploadFish').addEventListener('click', async () => {
     form.append('name', $('fishName').value.trim() || 'Моя рыбка');
     form.append('width', String(state.previewBlob.width));
     form.append('height', String(state.previewBlob.height));
+	form.append('size', state.fishSize);
 
     await api('/api/fish', { method: 'POST', body: form });
 
