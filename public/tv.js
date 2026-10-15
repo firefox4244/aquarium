@@ -19,11 +19,11 @@ const EMOJI = {
 };
 
 const BACKGROUNDS = {
-  neutral:    ['#3a6b7c', '#4a8a9c', '#1e4a5c'],
-  ocean:      ['#0a2540', '#1a4a6e', '#051829'],
-  freshwater: ['#2d5a4a', '#3d7a5f', '#1a3a2e'],
-  night:      ['#0a1428', '#1a2a4a', '#050a18'],
-  reef:       ['#1e5a6e', '#2a7a8a', '#0f3a4a'],
+  neutral:    ['#5a8a7a', '#3a6a6a', '#1a3a4a'],  // обычный аквариум с растениями
+  ocean:      ['#1a4a6a', '#0a2a4a', '#02121f'],  // морской, глубокий
+  freshwater: ['#4a7a5a', '#2a5a3a', '#0f2a1f'],  // пруд с растениями
+  night:      ['#0a1a2a', '#050f1a', '#02060d'],  // ночной, с синей подсветкой
+  reef:       ['#2a6a7a', '#1a4a5a', '#0a2a3a'],  // риф, бирюзово-серый
 };
 
 /* ---------- Глобальное состояние ---------- */
@@ -480,10 +480,11 @@ function drawBackground(dt, time) {
   ctx.fillRect(0, 0, w, h);
 
   const glow = ctx.createRadialGradient(
-    w * 0.52, h * 0.18, 2,
-    w * 0.52, h * 0.18, Math.max(w, h) * 0.8
+    w * 0.5, h * 0.05, 2,
+    w * 0.5, h * 0.05, Math.max(w, h) * 1.1
   );
-  glow.addColorStop(0, '#66e3f022');
+  glow.addColorStop(0, '#ffffff22');
+  glow.addColorStop(0.4, '#aaffff11');
   glow.addColorStop(1, '#00152b00');
   ctx.fillStyle = glow;
   ctx.fillRect(0, 0, w, h);
